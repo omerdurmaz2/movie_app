@@ -1,5 +1,6 @@
 package com.android.movieapp.view.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.android.movieapp.R
 import com.android.movieapp.model.BaseModel
 import com.android.movieapp.model.MovieItemModel
 import com.android.movieapp.util.Constants
+import com.android.movieapp.util.DateUtils
 import com.bumptech.glide.Glide
 
 class SliderAdapter(
@@ -32,6 +34,7 @@ class SliderAdapter(
         return view == `object`
     }
 
+    @SuppressLint("SetTextI18n")
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val layoutInflater = LayoutInflater.from(context)
         val view: ViewGroup =
@@ -45,10 +48,10 @@ class SliderAdapter(
 
         movies.results[position].let {
             Glide.with(context)
-                .load(Constants.Server.backdropUrl.plus(it.backdrop_path))
+                .load(Constants.Server.backdropUrl.plus(it.backdropPath))
                 .placeholder(circularProgress)
                 .into(view.findViewById(R.id.ivItemSlider))
-            view.findViewById<TextView>(R.id.tvItemSliderTitle).text = it.title
+            view.findViewById<TextView>(R.id.tvItemSliderTitle).text = it.title + " (${DateUtils.convertApiDateToYear(it.releaseDate)})"
             view.findViewById<TextView>(R.id.tvItemSliderDesc).text = it.overview
 
         }

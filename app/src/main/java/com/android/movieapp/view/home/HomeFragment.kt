@@ -66,7 +66,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
                     getUpcomingMovies()
                 }
                 is DataState.Error -> {
-
+                    activity?.onBackPressedDispatcher?.onBackPressed()
                 }
             }
         }
@@ -79,7 +79,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
                     notifyAdapter()
                 }
                 is DataState.Error -> {
-
+                    activity?.onBackPressedDispatcher?.onBackPressed()
                 }
             }
         }
@@ -97,7 +97,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
             adapter = viewModel.listAdapter
         }
 
-        binding?.nsHomeFragment?.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+        binding?.nsHomeFragment?.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _->
             if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
                 if (viewModel.baseUpcomingMovies?.results?.size != 0 && !viewModel.isLoading) {
                     viewModel.isLoading = true

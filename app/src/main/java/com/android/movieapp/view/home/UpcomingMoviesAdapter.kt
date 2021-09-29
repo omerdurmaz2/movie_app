@@ -67,13 +67,14 @@ class UpcomingMoviesAdapter(
                 circularProgress.start()
 
                 Glide.with(context)
-                    .load(Constants.Server.logoUrl.plus(item?.poster_path))
+                    .load(Constants.Server.logoUrl.plus(item?.posterPath))
                     .placeholder(circularProgress)
                     .into(holder.image)
             }
-            holder.title.text = item?.title
+            holder.title.text =
+                item?.title + " (${DateUtils.convertApiDateToYear(item?.releaseDate)})"
             holder.desc.text = item?.overview
-            holder.date.text = DateUtils.convertApiDateToAppDate(item?.release_date)
+            holder.date.text = DateUtils.convertApiDateToAppDate(item?.releaseDate)
 
             holder.itemView.setOnClickListener {
                 clickListener(item)

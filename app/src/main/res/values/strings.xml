@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Movie App</string>
+    <string name="technical_error_message">A technical error has occurred. Please try again later.</string>
 </resources>

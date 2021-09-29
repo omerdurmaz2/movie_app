@@ -3,10 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_dot_yellow.xml" value="0.14427083333333332" />
+        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.11388888888888889" />
+        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/tab_indicator.xml" value="0.12552083333333333" />
+        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/tab_indicator_selected.xml" value="0.12552083333333333" />
+        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/tab_indicator_selector.xml" value="0.12552083333333333" />
+        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/layout-v23/item_upcoming.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/layout/activity_main.xml" value="0.109375" />
-        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/layout/detail_fragment.xml" value="0.121875" />
+        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/layout/detail_fragment.xml" value="0.176" />
         <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/layout/home_fragment.xml" value="0.121875" />
+        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/layout/imdb_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_progress.xml" value="0.1" />
         <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_slider.xml" value="0.264" />
+        <entry key="..\:/Users/omerd/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_upcoming.xml" value="0.264" />
       </map>
     </option>
   </component>

@@ -24,6 +24,7 @@ class DetailViewModel @Inject constructor(
 
     val detail = ObservableField<MovieDetailModel>()
     val releaseDate = ObservableField<String>()
+    val year = ObservableField<String>()
     fun getDetail(callback: (DataState) -> Unit) {
 
         MainActivity.selectedItem?.id?.let {
@@ -38,7 +39,8 @@ class DetailViewModel @Inject constructor(
                         if (response.isSuccessful) {
                             detail.set(response.body())
                             MainActivity.selectedDetail = response.body()
-                            releaseDate.set(DateUtils.convertApiDateToAppDate(response.body()?.release_date))
+                            releaseDate.set(DateUtils.convertApiDateToAppDate(response.body()?.releaseDate))
+                            year.set(DateUtils.convertApiDateToYear(response.body()?.releaseDate))
                             callback(DataState.Success(""))
                         } else {
                             callback.invoke(DataState.Error(""))

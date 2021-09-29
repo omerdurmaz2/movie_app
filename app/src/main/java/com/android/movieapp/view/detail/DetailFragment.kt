@@ -1,11 +1,8 @@
 package com.android.movieapp.view.detail
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
-import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.android.movieapp.R
 import com.android.movieapp.base.BaseFragment
@@ -13,6 +10,7 @@ import com.android.movieapp.base.DataState
 import com.android.movieapp.databinding.DetailFragmentBinding
 import com.android.movieapp.util.Constants
 import com.android.movieapp.util.ext.setGone
+import com.android.movieapp.util.ext.showToast
 import com.android.movieapp.view.MainActivity
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +38,7 @@ class DetailFragment : BaseFragment<DetailFragmentBinding>(R.layout.detail_fragm
             context?.let {
                 binding?.ivDetailFragmentBanner?.let { it1 ->
                     Glide.with(it)
-                        .load(Constants.Server.backdropUrl.plus(MainActivity.selectedItem?.backdrop_path))
+                        .load(Constants.Server.backdropUrl.plus(MainActivity.selectedItem?.backdropPath))
                         .placeholder(circularProgress)
                         .into(it1)
                 }
@@ -57,6 +55,8 @@ class DetailFragment : BaseFragment<DetailFragmentBinding>(R.layout.detail_fragm
                     binding?.llDetailFragmentLoading?.setGone()
                 }
                 is DataState.Error -> {
+                    showToast(getString(R.string.technical_error_message))
+                    activity?.onBackPressedDispatcher?.onBackPressed()
                 }
             }
         }

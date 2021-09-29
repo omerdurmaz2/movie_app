@@ -34,6 +34,7 @@ class RestControllerFactory() {
         val okHttpClient = OkHttpClient.Builder().addInterceptor(chuckerInterceptor)
             .connectTimeout(timeoutInterval, TimeUnit.SECONDS)
             .readTimeout(timeoutInterval, TimeUnit.SECONDS)
+
         client = okHttpClient.build()
 
         val apiService: Retrofit = Retrofit.Builder().baseUrl(Constants.Server.baseUrl)

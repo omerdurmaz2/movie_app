@@ -5,16 +5,12 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.viewModels
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.android.movieapp.R
 import com.android.movieapp.base.BaseFragment
-import com.android.movieapp.base.DataState
-import com.android.movieapp.databinding.DetailFragmentBinding
 import com.android.movieapp.databinding.ImdbFragmentBinding
 import com.android.movieapp.util.Constants
 import com.android.movieapp.util.ext.setGone
 import com.android.movieapp.view.MainActivity
-import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,7 +30,7 @@ class ImdbFragment : BaseFragment<ImdbFragmentBinding>(R.layout.imdb_fragment) {
 
     private fun setUI() {
         binding?.wvImdbFragment?.loadUrl(
-            Constants.Server.imdbUrl.plus(MainActivity.selectedDetail?.imdb_id)
+            Constants.Server.imdbUrl.plus(MainActivity.selectedDetail?.imdbId)
         )
     }
 

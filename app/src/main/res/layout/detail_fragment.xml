@@ -37,6 +37,7 @@
                 android:gravity="center">
 
                 <ProgressBar
+                    style="@style/ProgressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center" />
@@ -72,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:text="@{Double.toString(viewModel.detail.vote_average)}"
+                    android:text="@{Double.toString(viewModel.detail.voteAverage)}"
                     android:textColor="@color/textBlack"
                     app:layout_constraintBottom_toBottomOf="@+id/ivDetailImdb"
                     app:layout_constraintStart_toEndOf="@+id/ivDetailStar"
@@ -123,7 +124,7 @@
                 android:layout_marginStart="@dimen/gap2X"
                 android:layout_marginTop="@dimen/gap2X"
                 android:layout_marginEnd="@dimen/gap2X"
-                android:text="@{viewModel.detail.original_title}"
+                android:text="@{viewModel.detail.originalTitle +  ` (` +viewModel.year+ `)`}"
                 android:textColor="@color/textBlack" />
 
             <TextView

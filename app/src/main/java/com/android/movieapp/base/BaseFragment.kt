@@ -71,7 +71,10 @@ abstract class BaseFragment<VB : ViewBinding>(
                         navController.currentBackStackEntry?.destination?.id!!,
                         true
                     )
-                } else navController.popBackStack()
+                } else {
+                    navController.popBackStack()
+                    _binding = null
+                }
             }
 
     }
