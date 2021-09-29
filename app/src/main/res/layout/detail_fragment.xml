@@ -1,26 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="viewModel"
             type="com.android.movieapp.view.detail.DetailViewModel" />
-    </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.detail.DetailFragment">
+        android:fillViewport="true"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvFragmentDetail"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:gravity="center"
             android:layout_height="match_parent"
-            android:text="Hello" />
+            android:orientation="vertical"
+            tools:context=".view.detail.DetailFragment">
 
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/ivDetailFragmentBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="256dp"
+                android:scaleType="fitXY" />
+
+
+            <LinearLayout
+                android:id="@+id/llDetailFragmentLoading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/gap2X"
+                android:paddingStart="@dimen/gap2X"
+                android:paddingEnd="@dimen/gap2X">
+
+                <ImageView
+                    android:id="@+id/ivDetailImdb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_imdb"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivDetailStar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/gapX"
+                    android:src="@drawable/ic_rate"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivDetailImdb"
+                    app:layout_constraintStart_toEndOf="@+id/ivDetailImdb"
+                    app:layout_constraintTop_toTopOf="@+id/ivDetailImdb" />
+
+                <TextView
+                    android:id="@+id/tvDetailScore"
+                    style="@style/TextViewRobotoMediumStyleTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@{Double.toString(viewModel.detail.vote_average)}"
+                    android:textColor="@color/textBlack"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivDetailImdb"
+                    app:layout_constraintStart_toEndOf="@+id/ivDetailStar"
+                    app:layout_constraintTop_toTopOf="@+id/ivDetailImdb"
+                    tools:text="7.8" />
+
+                <TextView
+                    android:id="@+id/tvDetailScoreMax"
+                    style="@style/TextViewRobotoMediumStyleTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/10"
+                    android:textColor="@color/darkGray"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivDetailImdb"
+                    app:layout_constraintStart_toEndOf="@+id/tvDetailScore"
+                    app:layout_constraintTop_toTopOf="@+id/ivDetailImdb" />
+
+                <View
+                    android:id="@+id/vDetailFragmentDot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginStart="@dimen/gapX"
+                    android:background="@drawable/ic_dot_yellow"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivDetailImdb"
+                    app:layout_constraintStart_toEndOf="@+id/tvDetailScoreMax"
+                    app:layout_constraintTop_toTopOf="@+id/ivDetailImdb" />
+
+                <TextView
+                    android:id="@+id/tvDetailFragmentDate"
+                    style="@style/TextViewRobotoMediumStyleTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/gapX"
+                    android:text="@{viewModel.releaseDate}"
+                    android:textColor="@color/textBlack"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivDetailImdb"
+                    app:layout_constraintStart_toEndOf="@+id/vDetailFragmentDot"
+                    app:layout_constraintTop_toTopOf="@+id/ivDetailImdb"
+                    tools:text="15.06.2021" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/tvDetailFragmentTitle"
+                style="@style/TextViewRobotoBoldHeadingStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap2X"
+                android:layout_marginTop="@dimen/gap2X"
+                android:layout_marginEnd="@dimen/gap2X"
+                android:text="@{viewModel.detail.original_title}"
+                android:textColor="@color/textBlack" />
+
+            <TextView
+                android:id="@+id/tvDetailFragmentOverview"
+                style="@style/TextViewRobotoRegularStyleThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap2X"
+                android:layout_marginTop="@dimen/gap2X"
+                android:layout_marginEnd="@dimen/gap2X"
+                android:text="@{viewModel.detail.overview}"
+                android:textColor="@color/textBlack" />
+        </LinearLayout>
+    </ScrollView>
 
 </layout>

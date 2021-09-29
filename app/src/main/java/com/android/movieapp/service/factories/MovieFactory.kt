@@ -19,8 +19,8 @@ interface MovieFactory {
 
     @GET("movie/upcoming")
     fun getUpcomingMovies(
-        @Query("api_key") apiKey: String = Constants.Server.apiKey,
         @Query("page") page: Int? = null,
+        @Query("api_key") apiKey: String = Constants.Server.apiKey,
     ): Call<BaseModel>
 
     @GET("movie/now_playing")

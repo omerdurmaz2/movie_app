@@ -35,6 +35,7 @@ abstract class NetworkCallback<T> : Callback<T> {
                 "You do not have an internet connection",
                 Toast.LENGTH_SHORT
             ).show()
+
         } else {
             Toast.makeText(
                 MovieApp.getApplicationContext(),
