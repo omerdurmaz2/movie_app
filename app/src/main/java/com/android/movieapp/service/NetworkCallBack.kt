@@ -38,7 +38,6 @@ abstract class NetworkCallback<T> : Callback<T> {
     }
 
     private fun convertToStatusResponse(response: T?): String {
-        Log.e("sss", "response :$response")
         return try {
             if (response != null) {
                 val gson = Gson()
@@ -49,7 +48,6 @@ abstract class NetworkCallback<T> : Callback<T> {
                 "${statusResponse.statusCode} - ${statusResponse.statusMessage}"
             } else MovieApp.getApplicationContext().getString(R.string.technical_error_message)
         } catch (e: Exception) {
-            Log.e("sss", "error: $e")
             ""
         }
     }

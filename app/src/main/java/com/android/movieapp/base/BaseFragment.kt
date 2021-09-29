@@ -28,8 +28,6 @@ abstract class BaseFragment<VB : ViewBinding>(
         savedInstanceState: Bundle?
     ): View? {
 
-        Log.e("sss", "isNavigated $isNavigated")
-
         if (!isNavigated)
             _binding = bindingInflater(layoutInflater, container, false)
         return _binding!!.root
