@@ -17,6 +17,7 @@ import com.android.movieapp.model.MovieItemModel
 import com.android.movieapp.util.ext.setGone
 import com.android.movieapp.util.ext.setVisible
 import com.android.movieapp.view.MainActivity
+import com.google.firebase.perf.metrics.AddTrace
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,6 +47,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
         }
     }
 
+    @AddTrace(name = "get_playing_movies_trace", enabled = true)
     private fun getPlayingMovies() {
         viewModel.getPlayingMovies {
             when (it) {
@@ -76,6 +78,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
         navigate(R.id.action_homeFragment_to_detailFragment, bundle)
     }
 
+    @AddTrace(name = "get_upcoming_movies_trace", enabled = true)
     private fun getUpcomingMovies() {
         viewModel.getUpcomingMovies {
             when (it) {

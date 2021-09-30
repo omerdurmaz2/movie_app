@@ -17,6 +17,7 @@ import com.android.movieapp.util.ext.setGone
 import com.android.movieapp.util.ext.showToast
 import com.android.movieapp.view.MainActivity
 import com.bumptech.glide.Glide
+import com.google.firebase.perf.metrics.AddTrace
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -62,6 +63,7 @@ class DetailFragment : BaseFragment<DetailFragmentBinding>(R.layout.detail_fragm
         }
     }
 
+    @AddTrace(name = "get_movie_detail_trace", enabled = true)
     private fun getDetail() {
         viewModel.getDetail {
             when (it) {
