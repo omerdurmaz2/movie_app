@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout>
 
     <data>
 
@@ -11,13 +11,12 @@
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="false"
         android:background="@color/black"
-        android:orientation="vertical"
-        >
+        android:fitsSystemWindows="false"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/llImdbLoading"
@@ -34,9 +33,9 @@
         </LinearLayout>
 
         <WebView
-            android:layout_marginTop="@dimen/gap3X"
             android:id="@+id/wvImdbFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/gap4X" />
     </LinearLayout>
 </layout>

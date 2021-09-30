@@ -1,13 +1,17 @@
 package com.android.movieapp.view.detail
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.android.movieapp.R
 import com.android.movieapp.base.BaseFragment
 import com.android.movieapp.base.DataState
 import com.android.movieapp.databinding.DetailFragmentBinding
+import com.android.movieapp.model.MovieDetailModel
+import com.android.movieapp.model.MovieItemModel
 import com.android.movieapp.util.Constants
 import com.android.movieapp.util.ext.setGone
 import com.android.movieapp.util.ext.showToast
@@ -25,8 +29,18 @@ class DetailFragment : BaseFragment<DetailFragmentBinding>(R.layout.detail_fragm
 
     override fun init() {
         binding?.viewModel = viewModel
-        setUI()
-        getDetail()
+
+        arguments?.getString("movie").let {
+            if (it != null) {
+                viewModel.selectedItem =
+                    viewModel.gson.fromJson(
+                        it,
+                        MovieItemModel::class.java
+                    )
+                setUI()
+                getDetail()
+            } else activity?.onBackPressed()
+        }
     }
 
     private fun setUI() {
@@ -38,7 +52,7 @@ class DetailFragment : BaseFragment<DetailFragmentBinding>(R.layout.detail_fragm
             context?.let {
                 binding?.ivDetailFragmentBanner?.let { it1 ->
                     Glide.with(it)
-                        .load(Constants.Server.backdropUrl.plus(MainActivity.selectedItem?.backdropPath))
+                        .load(Constants.Server.backdropUrl.plus(viewModel.selectedItem?.backdropPath))
                         .placeholder(circularProgress)
                         .into(it1)
                 }
@@ -65,8 +79,14 @@ class DetailFragment : BaseFragment<DetailFragmentBinding>(R.layout.detail_fragm
     override fun initClickListeners() {
         super.initClickListeners()
         binding?.ivDetailImdb?.setOnClickListener {
-            navigate(R.id.action_detailFragment_to_imdbFragment)
+            navigateToImdb()
         }
+    }
+
+    private fun navigateToImdb() {
+        val bundle = Bundle()
+        bundle.putString("detail", viewModel.gson.toJson(viewModel.detail.get()))
+        navigate(R.id.action_detailFragment_to_imdbFragment, bundle)
     }
 
 }

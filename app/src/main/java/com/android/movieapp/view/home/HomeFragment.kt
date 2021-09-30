@@ -1,18 +1,19 @@
 package com.android.movieapp.view.home
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.movieapp.R
 import com.android.movieapp.base.BaseFragment
 import com.android.movieapp.base.DataState
 import com.android.movieapp.databinding.HomeFragmentBinding
+import com.android.movieapp.model.MovieItemModel
 import com.android.movieapp.util.ext.setGone
 import com.android.movieapp.util.ext.setVisible
 import com.android.movieapp.view.MainActivity
@@ -56,10 +57,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
                                     it1,
                                     it2
                                 ) {
-                                    MainActivity.selectedItem = it
-                                    navigate(
-                                        R.id.action_homeFragment_to_detailFragment,
-                                    )
+                                    navigateToDetail(it)
                                 }
                             }
                         }
@@ -70,6 +68,12 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
                 }
             }
         }
+    }
+
+    private fun navigateToDetail(item: MovieItemModel?) {
+        val bundle = Bundle()
+        bundle.putString("movie", viewModel.gson.toJson(item))
+        navigate(R.id.action_homeFragment_to_detailFragment, bundle)
     }
 
     private fun getUpcomingMovies() {
@@ -87,17 +91,15 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(R.layout.home_fragment) {
 
     private fun initRecyclerView() {
         viewModel.listAdapter = UpcomingMoviesAdapter(context, viewModel.upcomingMovies) { i ->
-            MainActivity.selectedItem = i
-            navigate(
-                R.id.action_homeFragment_to_detailFragment,
-            )
+            navigateToDetail(i)
+
         }
         binding?.rvHomeFragment?.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = viewModel.listAdapter
         }
 
-        binding?.nsHomeFragment?.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _->
+        binding?.nsHomeFragment?.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
             if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
                 if (viewModel.baseUpcomingMovies?.results?.size != 0 && !viewModel.isLoading) {
                     viewModel.isLoading = true

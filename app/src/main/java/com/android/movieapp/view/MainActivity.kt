@@ -18,11 +18,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
 
-    companion object {
-        var selectedItem: MovieItemModel? = null
-        var selectedDetail: MovieDetailModel? = null
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

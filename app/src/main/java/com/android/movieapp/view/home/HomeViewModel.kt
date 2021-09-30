@@ -6,6 +6,7 @@ import com.android.movieapp.model.BaseModel
 import com.android.movieapp.model.MovieItemModel
 import com.android.movieapp.service.NetworkCallback
 import com.android.movieapp.service.RestControllerFactory
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Response
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val restController: RestControllerFactory
+    private val restController: RestControllerFactory,
+    val gson: Gson
 ) : ViewModel() {
 
     var playingMovies: BaseModel? = null
@@ -21,9 +23,9 @@ class HomeViewModel @Inject constructor(
     var upcomingMovies = ArrayList<MovieItemModel?>()
     var page = 1
     var isLoading = false
-     lateinit var listAdapter: UpcomingMoviesAdapter
+    lateinit var listAdapter: UpcomingMoviesAdapter
 
-     private var isNavigated=false
+    private var isNavigated = false
 
     fun getPlayingMovies(callback: (DataState) -> Unit) {
 

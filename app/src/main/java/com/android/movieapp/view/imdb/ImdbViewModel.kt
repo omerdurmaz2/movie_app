@@ -12,6 +12,7 @@ import com.android.movieapp.service.NetworkCallback
 import com.android.movieapp.service.RestControllerFactory
 import com.android.movieapp.util.DateUtils
 import com.android.movieapp.view.MainActivity
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Response
@@ -19,6 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ImdbViewModel @Inject constructor(
+    val gson: Gson
 ) : ViewModel() {
 
 }
